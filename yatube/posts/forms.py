@@ -17,11 +17,10 @@ class PostForm(forms.ModelForm):
 
 class CommentForm(forms.ModelForm):
     """Форма добавления комментария."""
-    
+
     class Meta:
         model = Comment
         fields = ('text',)
         widgets = {
             'text': forms.Textarea(attrs={'class': 'form-control', 'rows': 7}),
         }
-        

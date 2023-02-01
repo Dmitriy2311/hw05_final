@@ -6,6 +6,7 @@ from .forms import PostForm, CommentForm
 from .models import Post, Group, Follow, User
 from .utils import paginat
 
+
 @cache_page(60 * 20)
 def index(request):
     """Главная страница."""
@@ -49,7 +50,6 @@ def profile(request, username):
         'author': author,
         'page_obj': page_obj,
         'following': following,
-        
     }
     return render(request, 'posts/profile.html', context)
 
@@ -138,6 +138,7 @@ def follow_index(request):
     }
     return render(request, 'posts/follow.html', context)
 
+
 @login_required
 def profile_follow(request, username):
     """Подписаться на автора."""
@@ -147,6 +148,7 @@ def profile_follow(request, username):
         Follow.objects.get_or_create(user=request.user, author=author)
 
     return redirect("posts:profile", username)
+
 
 @login_required
 def profile_unfollow(request, username):
