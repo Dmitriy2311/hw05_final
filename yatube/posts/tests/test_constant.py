@@ -1,3 +1,4 @@
+# строковые константы
 NEW_USER = 'Новый пользователь'
 TEST_NAME_GROUP = 'Тестовое название группы'
 TEST_DESCRIP_GROUP = 'Тестовое описание группы'
@@ -13,10 +14,11 @@ DESCRIPT = 'Описание группы'
 AUTH = 'Автор статьи'
 TEST_USER = 'Тестовый пользователь'
 TEST_NAME = 'Тестовое название'
-TEST_SLUG = 'test-slug'
 TEST_DISCRIP = 'Тестовое описание'
-SLUG = 'slug'
 NO_AUTH = 'Не авторизованый пользователь'
+
+TEST_SLUG = 'test-slug'
+SLUG = 'slug'
 PAGE = "page"
 USER_NAME = 'username'
 POST = 'post'
@@ -29,31 +31,31 @@ GROUP = 'group'
 TEST_COMMENT = 'Test comment'
 GUEST = 'user1'
 USER = 'user2'
-LOGIN = 'login'
+LOGIN = 'users:login'
 COMMENT = 'comments'
-ERROR_REDIRECT_GUEST = 'Ошибка редиректа неавторизованного пользователя.'
-ERROR_VALUE_COMMENT = 'Ошибка изменённого количества комментариев.'
-ERROR_REDIRECT = 'Ошибка редиректа.'
-ERROR_FIND_COMMENT = 'Ошибка нахождения комментария на странице поста.'
-ERROR_CHANGE_VAJUE_COMMENT = 'Ошибка изменения количества комментариев.'
-ERROR_ADD_COMMENT = 'Ошибка нахождения добавленного комментария.'
 
-DETAIL = 'posts:post_detail'
-POST_CREATE = 'posts:post_create'
-INDEX = 'posts:index'
-PROFILE = 'posts:profile'
-GROUP_LIST = 'posts:group_list'
-EDIT = 'posts:post_edit'
-DETAIL = 'posts:post_detail'
-FOLLOW_INDEX = 'posts:follow_index'
-ADD_COMMENT = 'posts:add_comment'
-PROFFILE_UNFOLLOW = 'posts:profile_unfollow'
-PROFFILE_FOLLOW = 'posts:profile_follow'
+# константы маршрутов
+URL_DETAIL = 'posts:post_detail'
+URL_POST_CREATE = 'posts:post_create'
+URL_INDEX = 'posts:index'
+URL_PROFILE = 'posts:profile'
+URL_GROUP_LIST = 'posts:group_list'
+URL_EDIT = 'posts:post_edit'
+URL_DETAIL = 'posts:post_detail'
+URL_FOLLOW_INDEX = 'posts:follow_index'
+URL_ADD_COMMENT = 'posts:add_comment'
+URL_PROFFILE_UNFOLLOW = 'posts:profile_unfollow'
+URL_PROFFILE_FOLLOW = 'posts:profile_follow'
+URL_UNEX_PAGE = "/unexisting_page/"
+URL_CREATE = "/create/"
+URL_LOGIN_CREATE = "/auth/login/?next=/create/"
 
+# константы шаблонов
 INDEX_HTML = 'posts/index.html'
 CREATE_HTML = 'posts/create_post.html'
 GROUP_LIST_HTML = 'posts/group_list.html'
 PROFILE_HTML = 'posts/profile.html'
 DETAIL_HTML = 'posts/post_detail.html'
 
+# числовые константы
 TEST_OF_POST: int = 13

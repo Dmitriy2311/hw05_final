@@ -3,9 +3,9 @@ from django.urls import reverse
 
 from posts.models import Group, Post, User
 from posts.tests.test_constant import (
-    POST_CREATE, EDIT, SLUG, NEW_USER, POST_ID, GROUP,
+    URL_POST_CREATE, URL_EDIT, SLUG, NEW_USER, POST_ID, GROUP,
     TEST_NAME_GROUP, TEST_DESCRIP_GROUP, POST, TEXT,
-    TEXT_POST, TEXT_POST_FORM, NEW_TEXT_POST, DETAIL
+    TEXT_POST, TEXT_POST_FORM, NEW_TEXT_POST, URL_DETAIL
 )
 
 
@@ -37,7 +37,7 @@ class PostsFormsTest(TestCase):
             GROUP: self.group.id,
         }
         self.authorized_client.post(
-            reverse(POST_CREATE),
+            reverse(URL_POST_CREATE),
             data=form_data,
         )
         self.assertEqual(Post.objects.count(), post_count + 1)
@@ -53,11 +53,11 @@ class PostsFormsTest(TestCase):
             GROUP: self.group.id,
         }
         self.authorized_client.post(reverse(
-            EDIT,
+            URL_EDIT,
             kwargs={POST_ID: self.post.id},
         ), data=form_data)
         response = self.authorized_client.get(reverse(
-            DETAIL,
+            URL_DETAIL,
             kwargs={POST_ID: self.post.id},
         ))
         self.assertEqual(response.context[POST].text, NEW_TEXT_POST)

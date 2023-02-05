@@ -3,10 +3,11 @@ from django.contrib.auth import get_user_model
 
 from core.models import CreatedModel
 
-User = get_user_model()
-
 MAX_LENGTH = 200
+MAX_LENGTH1 = 300
 MAX_LONG_TEXT = 15
+
+User = get_user_model()
 
 
 class Group(models.Model):
@@ -51,7 +52,7 @@ class Post(CreatedModel):
     )
 
     class Meta:
-        ordering = ['-pub_date']
+        ordering = ("-created",)
         default_related_name = 'posts'
 
     def __str__(self):
@@ -72,7 +73,7 @@ class Comment(models.Model):
         verbose_name='Имя автора',
     )
     text = models.TextField(
-        max_length=300,
+        max_length=MAX_LENGTH1,
         verbose_name='Текст комментария',
     )
     created = models.DateTimeField(

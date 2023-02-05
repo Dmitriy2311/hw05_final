@@ -5,10 +5,11 @@ from django.urls import reverse
 
 from posts.models import Group, Post, User
 from posts.tests.test_constant import (
-    INDEX, GROUP_LIST, PROFILE, TEST_POST, PROFILE_HTML, PROFILE,
-    EDIT, AUTH, NO_AUTH, TEST_SLUG, TEST_DESCRIPT, SLUG, USER_NAME,
-    INDEX, GROUP_LIST, DETAIL, DETAIL_HTML, POST_CREATE, POST_ID,
-    INDEX_HTML, CREATE_HTML, GROUP_LIST_HTML, TEST_GROUP
+    URL_INDEX, URL_GROUP_LIST, URL_PROFILE, TEST_POST, PROFILE_HTML, URL_PROFILE,
+    URL_EDIT, AUTH, NO_AUTH, TEST_SLUG, TEST_DESCRIPT, SLUG, USER_NAME,
+    URL_INDEX, URL_GROUP_LIST, URL_DETAIL, DETAIL_HTML, URL_POST_CREATE, POST_ID,
+    INDEX_HTML, CREATE_HTML, GROUP_LIST_HTML, TEST_GROUP, URL_UNEX_PAGE, URL_CREATE,
+    URL_LOGIN_CREATE
 )
 
 
@@ -31,67 +32,67 @@ class PostURLTests(TestCase):
         )
 
         cls.url_names_public = {
-            INDEX_HTML: reverse(INDEX),
+            INDEX_HTML: reverse(URL_INDEX),
             GROUP_LIST_HTML: reverse(
-                GROUP_LIST,
+                URL_GROUP_LIST,
                 kwargs={SLUG: TEST_SLUG},
             ),
             PROFILE_HTML: reverse(
-                PROFILE,
+                URL_PROFILE,
                 kwargs={USER_NAME: cls.user.username},
             ),
             DETAIL_HTML: reverse(
-                DETAIL,
+                URL_DETAIL,
                 kwargs={POST_ID: cls.post.id},
             ),
         }
 
         cls.url_autorized = {
-            INDEX_HTML: reverse(INDEX),
+            INDEX_HTML: reverse(URL_INDEX),
             GROUP_LIST_HTML: reverse(
-                GROUP_LIST,
+                URL_GROUP_LIST,
                 kwargs={SLUG: TEST_SLUG},
             ),
             PROFILE_HTML: reverse(
-                PROFILE,
+                URL_PROFILE,
                 kwargs={USER_NAME: cls.user.username},
             ),
             DETAIL_HTML: reverse(
-                DETAIL,
+                URL_DETAIL,
                 kwargs={POST_ID: cls.post.id},
             ),
             CREATE_HTML: reverse(
-                EDIT,
+                URL_EDIT,
                 kwargs={POST_ID: cls.post.id},
             ),
         }
 
         cls.url_names_redirects = {
             reverse(
-                EDIT, kwargs={POST_ID: cls.post.id}): (
+                URL_EDIT, kwargs={POST_ID: cls.post.id}): (
                 f"/auth/login/?next=/posts/{cls.post.pk}/edit/"
             ),
-            "/create/": "/auth/login/?next=/create/",
+            URL_CREATE: URL_LOGIN_CREATE,
         }
 
         cls.url_names_templates = {
-            reverse(INDEX): INDEX_HTML,
+            reverse(URL_INDEX): INDEX_HTML,
             reverse(
-                GROUP_LIST, kwargs={SLUG: TEST_SLUG}
+                URL_GROUP_LIST, kwargs={SLUG: TEST_SLUG}
             ): GROUP_LIST_HTML,
             reverse(
-                PROFILE, kwargs={USER_NAME: cls.user.username}
+                URL_PROFILE, kwargs={USER_NAME: cls.user.username}
             ): PROFILE_HTML,
             reverse(
-                DETAIL, kwargs={POST_ID: cls.post.id}
+                URL_DETAIL, kwargs={POST_ID: cls.post.id}
             ): DETAIL_HTML,
             reverse(
-                EDIT, kwargs={POST_ID: cls.post.id}
+                URL_EDIT, kwargs={POST_ID: cls.post.id}
             ): CREATE_HTML,
-            reverse(POST_CREATE): CREATE_HTML,
+            reverse(URL_POST_CREATE): CREATE_HTML,
         }
 
-        cls.url_unexisting_page = "/unexisting_page/"
+        cls.url_unexisting_page = URL_UNEX_PAGE
 
     def setUp(self):
 

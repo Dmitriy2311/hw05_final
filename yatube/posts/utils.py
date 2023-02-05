@@ -1,6 +1,5 @@
 from django.core.paginator import Paginator
 
-
 POST_LIMIT = 10
 
 

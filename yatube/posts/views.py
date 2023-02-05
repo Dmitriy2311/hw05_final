@@ -42,9 +42,9 @@ def profile(request, username):
     following = False
     if request.user.is_authenticated and request.user != author:
         if Follow.objects.filter(user=request.user, author=author).exists():
-            following = "can_unfollow"
+            following = False
         else:
-            following = "can_follow"
+            following = True
 
     context = {
         'author': author,
@@ -146,7 +146,6 @@ def profile_follow(request, username):
     author = get_object_or_404(User, username=username)
     if request.user != author:
         Follow.objects.get_or_create(user=request.user, author=author)
-
     return redirect("posts:profile", username)
 
 
@@ -155,6 +154,6 @@ def profile_unfollow(request, username):
     """Отписка от автора."""
 
     author = get_object_or_404(User, username=username)
-    Follow.objects.filter(user=request.user, author=author).delete()
+    Follow.objects.filter(user=request.user, author__username=username,).delete()
 
     return redirect("posts:profile", username)
