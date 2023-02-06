@@ -193,7 +193,7 @@ class PostsViewsTests(TestCase):
         )
         response = (self.client.post(
             reverse(
-                URL_ADD_COMMENT, 
+                URL_ADD_COMMENT,
                 kwargs={POST_ID: self.post.id}
             )
         ))
@@ -209,7 +209,7 @@ class PostsViewsTests(TestCase):
         """Проверка, гость не может комментировать посты."""
         response = (self.guest_client.post(
             reverse(
-                URL_ADD_COMMENT, 
+                URL_ADD_COMMENT,
                 kwargs={POST_ID: self.post.id}
             )
         ))
@@ -223,7 +223,7 @@ class PostsViewsTests(TestCase):
         """Проверка, возможно ли отписаться от автора поста."""
         self.authorized_client2.get(
             reverse(
-                URL_PROFFILE_UNFOLLOW, 
+                URL_PROFFILE_UNFOLLOW,
                 kwargs={USER_NAME: AUTHOR}
             )
         )
@@ -283,11 +283,11 @@ class PostsPaginatorViewsTests(TestCase):
         url_pages = [
             reverse(URL_INDEX),
             reverse(
-                URL_GROUP_LIST, 
+                URL_GROUP_LIST,
                 kwargs={SLUG: self.group.slug}
             ),
             reverse(
-                URL_PROFILE, 
+                URL_PROFILE,
                 kwargs={USER_NAME: self.user1.username}
             ),
         ]
