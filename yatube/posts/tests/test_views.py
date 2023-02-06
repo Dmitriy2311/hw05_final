@@ -187,26 +187,45 @@ class PostsViewsTests(TestCase):
         может ли комментировать посты
         """
         comment = Comment.objects.create(
-            text=COMMENT, author=self.user1, post_id=self.post.id)
+            text=COMMENT,
+            author=self.user1,
+            post_id=self.post.id
+        )
         response = (self.client.post(
-            reverse(URL_ADD_COMMENT, kwargs={POST_ID: self.post.id})))
+            reverse(
+                URL_ADD_COMMENT, 
+                kwargs={POST_ID: self.post.id}
+            )
+        ))
         response = (self.client.get(
-            reverse(URL_DETAIL, kwargs={POST_ID: self.post.id})))
+            reverse(
+                URL_DETAIL,
+                kwargs={POST_ID: self.post.id}
+            )
+        ))
         self.assertContains(response, comment)
 
     def test_comment_post_guest_user(self):
         """Проверка, гость не может комментировать посты."""
         response = (self.guest_client.post(
-            reverse(URL_ADD_COMMENT, kwargs={POST_ID: self.post.id})))
+            reverse(
+                URL_ADD_COMMENT, 
+                kwargs={POST_ID: self.post.id}
+            )
+        ))
         self.assertRedirects(response, reverse(
             LOGIN) + '?next=' + reverse(
                 URL_ADD_COMMENT,
-            kwargs={POST_ID: self.post.id}))
+            kwargs={POST_ID: self.post.id})
+        )
 
     def test_post_profile_unfollow(self):
         """Проверка, возможно ли отписаться от автора поста."""
         self.authorized_client2.get(
-            reverse(URL_PROFFILE_UNFOLLOW, kwargs={USER_NAME: AUTHOR})
+            reverse(
+                URL_PROFFILE_UNFOLLOW, 
+                kwargs={USER_NAME: AUTHOR}
+            )
         )
         self.assertFalse(
             Follow.objects.filter(
@@ -263,8 +282,14 @@ class PostsPaginatorViewsTests(TestCase):
         )
         url_pages = [
             reverse(URL_INDEX),
-            reverse(URL_GROUP_LIST, kwargs={SLUG: self.group.slug}),
-            reverse(URL_PROFILE, kwargs={USER_NAME: self.user1.username}),
+            reverse(
+                URL_GROUP_LIST, 
+                kwargs={SLUG: self.group.slug}
+            ),
+            reverse(
+                URL_PROFILE, 
+                kwargs={USER_NAME: self.user1.username}
+            ),
         ]
         for url in url_pages:
             for page, count in pages:
