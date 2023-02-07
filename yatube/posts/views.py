@@ -41,7 +41,10 @@ def profile(request, username):
     page_obj = paginat(request, post_list)
     following = request.user.is_authenticated
     if following:
-        following = Follow.objects.filter(user=request.user, author=author).exists()
+        following = Follow.objects.filter(
+            user=request.user,
+            author=author
+        ).exists()
 
     context = {
         'author': author,
