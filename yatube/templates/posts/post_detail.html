@@ -7,7 +7,9 @@
   <div class="row">
       <aside class="col-12 col-md-3">
         <ul class="list-group list-group-flush">
-          {% include 'includes/date.html' %}
+          {% for post in page_obj %}
+            {% include "includes/post_art.html" with date=True only %}
+          {% endfor %}
           {% if post.group %}
               <li class="list-group-item">
                   Группа: {{ post.group.title }}

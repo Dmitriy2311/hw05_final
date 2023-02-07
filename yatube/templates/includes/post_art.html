@@ -9,7 +9,9 @@
       {% endif %}
     </li>
     <li>
+      {% if date %}
       Дата публикации: {{  post.pub_date|date:"d E Y" }} 
+      {% endif %}
     </li>
   </ul>
 
