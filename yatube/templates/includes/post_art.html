@@ -25,7 +25,10 @@
 <a href="{% url 'posts:post_detail' post.pk %}">подробная информация</a>
 
 {% if post.group and group %}
-  <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы{{ post.group.title }}</a>
+    <li class="list-group-item">
+        Группа: {{ post.group.title }}
+        <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
+    </li>
 {% endif %}
 </article>
 {% if not forloop.last %}<hr>{% endif %}
