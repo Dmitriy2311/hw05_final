@@ -7,7 +7,7 @@
         <h1> {{ group.title }} </h1>
         <p>{{ group.description }}</p>
           {% for post in page_obj %}
-            {% include "includes/post_art.html" with author=True group=False %}
+            {% include "includes/post_art.html" with author=True date=True group=False %}
           {% endfor %}
         {% include 'posts/includes/paginator.html' %}
       </div>  

@@ -8,7 +8,7 @@
         <h1>Все посты</h1>
 
         {% for post in page_obj %}
-            {% include 'includes/post_art.html' with author=True group=True %}
+            {% include 'includes/post_art.html' with author=True date=True group=True %}
         {% endfor %}
 
         {% include 'posts/includes/paginator.html' %}

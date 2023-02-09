@@ -8,7 +8,7 @@
       {% include 'posts/includes/switcher.html' with follow=True %}
 
     {% for post in page_obj %}
-      {% include 'includes/post_art.html' with author=True group=True %}
+      {% include 'includes/post_art.html' with author=True date=True group=True %}
     {% endfor %}
 
     <div class="d-flex justify-content-center">

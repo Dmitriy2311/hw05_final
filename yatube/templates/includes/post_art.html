@@ -9,9 +9,7 @@
       {% endif %}
     </li>
     <li>
-      {% if date %}
       Дата публикации: {{  post.pub_date|date:"d E Y" }} 
-      {% endif %}
     </li>
   </ul>
 
@@ -24,11 +22,11 @@
   </p>
 <a href="{% url 'posts:post_detail' post.pk %}">подробная информация</a>
 
-{% if post.group and group %}
-    <li class="list-group-item">
+  {% if post.group and group %}
+    <li>
         Группа: {{ post.group.title }}
         <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
     </li>
-{% endif %}
+  {% endif %}
 </article>
 {% if not forloop.last %}<hr>{% endif %}
